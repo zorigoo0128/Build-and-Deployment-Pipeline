@@ -1,10 +1,8 @@
 #!/bin/bash
-
 echo "Deploying Fleet $fleet_id with Version $version"
 
 # Get the default AWS region
 AWS_REGION=$(aws configure get region)
-
 
 # GameLift build details
 BUILD_NAME="build-prod"
@@ -25,7 +23,6 @@ OUTPUT=$(aws gamelift upload-build --name "$BUILD_NAME" --build-version "$BUILD_
 BUILD_ID=$(echo "$OUTPUT" | grep "Build ID:" | awk '{print $NF}')
 
 echo "Uploaded build with id: $BUILD_ID"
-
 echo "Creating GameLift fleet..."
 FLEET_ID=$(aws gamelift create-fleet \
   --name "$FLEET_NAME" \
@@ -34,7 +31,7 @@ FLEET_ID=$(aws gamelift create-fleet \
   --ec2-inbound-permissions "$UDP_CONFIG" "$TCP_CONFIG" \
   --fleet-type "$FLEET_TYPE" \
   --runtime-configuration "ServerProcesses=[{LaunchPath=/local/game/$LAUNCH_PATH,Parameters=-log,ConcurrentExecutions=7}]" \
-  --metric-groups "TargetTracking-AverageGameSessionRoundtripTime" \
+  --metric-groups "default" \
   --instance-role-arn "$INSTANCE_ROLE" \
   --output json | jq -r '.FleetId')
 
