@@ -38,4 +38,4 @@ FLEET_ID=$(aws gamelift create-fleet \
   --instance-role-arn "$INSTANCE_ROLE" \
   --output json | jq -r '.FleetId')
 
-echo "Fleet created: $FLEET_ID"
+echo "Fleet created!"
