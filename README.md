@@ -22,7 +22,7 @@ This Bash script is designed to build and deploy a `Unreal Engine` project to `G
     ./run.sh -f <fleet_name> -e <ec2_instance_type> -p <uproject_path> -t <build_target> -v <build_version> -r <role_arn>
     ```
     Parameter|Type|Required
-    ---|---|---
+    -|-|-
      `<fleet_name>` |  string | `required` 
      `<ec2_instance_type>` | string |optional
     `<uproject_path>`|string|`required`
@@ -37,7 +37,7 @@ This Bash script is designed to build and deploy a `Unreal Engine` project to `G
 ./run.sh -f fleet-myproject -e c5.large -p /home/user/MyProject/MyProject.uproject -t MyProjectServer -v v1.0.0 -r arn:aws:iam::22334455667788:role/RoleArn
 ```
 
-This example creates a GameLift fleet with a `C5.large` instance type, using On-Demand instances, TCP and UDP port settings, SSH port 22, specific EC2 inbound permissions, and located in the awscli default region.
+This example creates a GameLift fleet with a `C5.large` instance type, using `On-Demand` instances, TCP and UDP port settings, SSH port 22, specific EC2 inbound permissions, and located in the awscli default region.
 
 ---
 
