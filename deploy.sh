@@ -21,6 +21,7 @@ LAUNCH_PATH=$(./get_launch_path.sh)
 echo "Uploading GameLift build..."
 OUTPUT=$(aws gamelift upload-build --name "$BUILD_NAME" --build-version "$BUILD_VERSION" --server-sdk-version "5.1.1" --region "$AWS_REGION" --build-root "$ARCHIVE_DIR/LinuxServer" --operating-system "AMAZON_LINUX_2023" --output json )
 BUILD_ID=$(echo "$OUTPUT" | grep "Build ID:" | awk '{print $NF}')
+sleep 5
 
 echo "Uploaded build with id: $BUILD_ID"
 echo "Creating GameLift fleet..."
