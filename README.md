@@ -23,12 +23,12 @@ This Bash script is designed to build and deploy a `Unreal Engine` project to `G
     ```
     Parameter|Type|Required
     -|-|-
-     `<fleet_name>` |  string | `required` 
-     `<ec2_instance_type>` | string |optional
-    `<uproject_path>`|string|`required`
-    `<build_target>`|string|`required`
-    `<build_version>   `|string|`required`
-    `<role_arn>`|string|optional
+    `<fleet_name>`|string|Y
+    `<ec2_instance_type>`|string|N
+    `<uproject_path>`|string|Y
+    `<build_target>`|string|Y
+    `<build_version>`|string|Y
+    `<role_arn>`|string|N
 
 
 ## Example
