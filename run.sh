@@ -1,4 +1,6 @@
 #!/bin/bash
+cd "$(dirname "$0")"
+
 BUILD_VERSION=
 PROJECT_PATH=
 TARGET=
@@ -52,8 +54,15 @@ echo "Target: $TARGET"
 echo "Archive dir: $ARCHIVE_DIR"
 echo "Fleet name: $FLEET_NAME"
 
+echo $PWD
+
 # Create dedicated server package
-./package.sh
+echo Packaging...
+./package.sh > package.log
 
 # Deploy package to AWS
-./deploy.sh
+echo Deploying...
+./deploy.sh > deploy.log
+
+# Done
+echo Done
