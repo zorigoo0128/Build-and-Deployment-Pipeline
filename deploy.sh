@@ -23,7 +23,7 @@ sleep 5
 
 echo "Uploaded build with id: $BUILD_ID"
 echo "Creating GameLift fleet..."
-FLEET_ID=$(aws gamelift create-fleet \
+$(aws gamelift create-fleet \
   --name "$FLEET_NAME" \
   --build-id "$BUILD_ID" \
   --ec2-instance-type "$EC2_INSTANCE_TYPE" \
@@ -32,6 +32,6 @@ FLEET_ID=$(aws gamelift create-fleet \
   --runtime-configuration "ServerProcesses=[{LaunchPath=/local/game/$LAUNCH_PATH,Parameters=-log,ConcurrentExecutions=7}]" \
   --metric-groups "default" \
   --instance-role-arn "$INSTANCE_ROLE" \
-  --output json | jq -r '.FleetId')
+  --output json > fleet_info.log) 
 
 echo "Fleet created!"

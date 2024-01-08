@@ -25,5 +25,6 @@ cp "$(dirname $PROJECT_PATH)/$SSL_PATH" "$ARCHIVE_DIR/LinuxServer/$PROJECT_NAME/
 
 # Copies install.sh to archive
 INSTALL_SH_DIR="$(dirname $PROJECT_PATH)/Scripts/install.sh"
+dos2unix $INSTALL_SH_DIR
 echo Copying "$INSTALL_SH_DIR" to "$ARCHIVE_DIR/LinuxServer/install.sh"
 cp $INSTALL_SH_DIR $ARCHIVE_DIR/LinuxServer/install.sh
