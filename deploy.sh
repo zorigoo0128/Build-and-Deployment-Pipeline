@@ -8,7 +8,7 @@ AWS_REGION=$(aws configure get region)
 # GameLift build details
 BUILD_NAME="build-prod"
 BUILD_ID=""
-FLEET_TYPE="ON_DEMAND"
+FLEET_TYPE="SPOT"
 MIN_UDP_PORT=7777
 MAX_UDP_PORT=7783
 UDP_CONFIG="FromPort=$MIN_UDP_PORT,ToPort=$MAX_UDP_PORT,IpRange=0.0.0.0/0,Protocol=UDP"
@@ -21,6 +21,7 @@ OUTPUT=$(aws gamelift upload-build --name "$BUILD_NAME" --build-version "$BUILD_
 BUILD_ID=$(echo "$OUTPUT" | grep "Build ID:" | awk '{print $NF}')
 sleep 5
 
+# Create fleet
 echo "Uploaded build with id: $BUILD_ID"
 echo "Creating GameLift fleet..."
 $(aws gamelift create-fleet \
