@@ -4,11 +4,12 @@ This Bash script is designed to build and deploy a `Unreal Engine` project to `G
 
 ## Prerequisites
 
-
 - [AWS CLI](https://aws.amazon.com/cli/) installed and configured with the necessary permissions.
 - [jq](https://stedolan.github.io/jq/) installed for JSON parsing.
-- `dos2unix` installed for converting shell script into Unix format: `sudo apt install dos2unix` (*optional*)
-## Usaged
+- *(Optional)* `dos2unix` installed for converting shell script into Unix format: `sudo apt install dos2unix` 
+
+
+## Usage
 
 1. Clone the repository:
 
