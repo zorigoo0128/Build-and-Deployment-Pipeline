@@ -16,11 +16,11 @@ PROJECT_FILE_NAME=$(basename $PROJECT_PATH)
 PROJECT_NAME=${PROJECT_FILE_NAME%.*}
 
 # Copies crypto library to archive
-echo Copying $(dirname $PROJECT_PATH)/$CRYPTO_PATH to $ARCHIVE_DIR/LinuxServer/$PROJECT_NAME/$CRYPTO_PATH
+echo Copying libcrypto.so.1.1 to $CRYPTO_PATH
 cp "$(dirname $PROJECT_PATH)/$CRYPTO_PATH" "$ARCHIVE_DIR/LinuxServer/$PROJECT_NAME/$CRYPTO_PATH"
 
 # Copies ssl library to archive
-echo Copying $(dirname $PROJECT_PATH)/$SSL_PATH to $ARCHIVE_DIR/LinuxServer/$PROJECT_NAME/$SSL_PATH
+echo Copying libssl.so.1.1 to $SSL_PATH
 cp "$(dirname $PROJECT_PATH)/$SSL_PATH" "$ARCHIVE_DIR/LinuxServer/$PROJECT_NAME/$SSL_PATH"
 
 # Copies install.sh to archive
