@@ -33,6 +33,6 @@ $(aws gamelift create-fleet \
   --runtime-configuration "ServerProcesses=[{LaunchPath=/local/game/$LAUNCH_PATH,Parameters=-log,ConcurrentExecutions=7}]" \
   --metric-groups "default" \
   --instance-role-arn "$INSTANCE_ROLE" \
-  --output json > fleet_info.log) 
+  --output json > fleet_info.json) 
 
 echo "Fleet created!"
