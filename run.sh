@@ -7,8 +7,9 @@ TARGET=
 EC2_INSTANCE_TYPE="c5.large"
 FLEET_NAME="fleet-prod"
 ROLE_ARN=
+FLEET_TYPE='SPOT'
 # Parse command-line arguments
-while getopts ":t:p:v:e:f:r:" opt; do
+while getopts ":t:p:v:e:f:r:k:" opt; do
   case $opt in
     t)
       TARGET="$OPTARG"
@@ -28,6 +29,9 @@ while getopts ":t:p:v:e:f:r:" opt; do
     r)
       ROLE_ARN="$OPTARG"
       ;;
+    k)
+      FLEET_TYPE="$OPTARG"
+      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -40,6 +44,7 @@ while getopts ":t:p:v:e:f:r:" opt; do
 done
 ARCHIVE_DIR=$HOME/Packages/$BUILD_VERSION
 
+export FLEET_TYPE
 export ROLE_ARN
 export BUILD_VERSION
 export PROJECT_PATH

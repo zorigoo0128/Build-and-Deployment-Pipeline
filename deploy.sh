@@ -8,7 +8,6 @@ AWS_REGION=$(aws configure get region)
 # GameLift build details
 BUILD_NAME="build-prod"
 BUILD_ID=""
-FLEET_TYPE="SPOT"
 MIN_UDP_PORT=7777
 MAX_UDP_PORT=7783
 UDP_CONFIG="FromPort=$MIN_UDP_PORT,ToPort=$MAX_UDP_PORT,IpRange=0.0.0.0/0,Protocol=UDP"
