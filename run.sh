@@ -63,7 +63,7 @@ echo "Project path: $PROJECT_PATH"
 echo "Target: $TARGET"
 echo "Archive dir: $ARCHIVE_DIR"
 echo "Fleet name: $FLEET_NAME"
-echo "Fleet name: $PROFILE"
+echo "AWS Profile: $PROFILE"
 
 echo $PWD
 
