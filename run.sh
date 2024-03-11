@@ -8,8 +8,9 @@ EC2_INSTANCE_TYPE="c5.large"
 FLEET_NAME="fleet-prod"
 ROLE_ARN=
 FLEET_TYPE='SPOT'
+PROFILE='default'
 # Parse command-line arguments
-while getopts ":t:p:v:e:f:r:k:" opt; do
+while getopts ":t:p:v:e:f:r:k:a:" opt; do
   case $opt in
     t)
       TARGET="$OPTARG"
@@ -32,6 +33,9 @@ while getopts ":t:p:v:e:f:r:k:" opt; do
     k)
       FLEET_TYPE="$OPTARG"
       ;;
+    a)
+      PROFILE="$OPTARG"
+      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -50,6 +54,7 @@ export BUILD_VERSION
 export PROJECT_PATH
 export TARGET
 export ARCHIVE_DIR
+export PROFILE
 export FLEET_NAME
 export EC2_INSTANCE_TYPE
 # Access variables from the first script
@@ -58,6 +63,7 @@ echo "Project path: $PROJECT_PATH"
 echo "Target: $TARGET"
 echo "Archive dir: $ARCHIVE_DIR"
 echo "Fleet name: $FLEET_NAME"
+echo "Fleet name: $PROFILE"
 
 echo $PWD
 

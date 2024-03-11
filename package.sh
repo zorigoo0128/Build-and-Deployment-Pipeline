@@ -3,7 +3,7 @@
 $UE_ROOT/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
     -Server -NoClient -ServerConfig=Shipping \
     -Project=$PROJECT_PATH \
-    -UTF8Output -NoDebugInfo -AllMaps -NoP4 -Build -Cook -Stage -Pak -Package -Archive \
+    -UTF8Output -NoDebugInfo -AllMaps -NoP4 -Build -Cook -Stage -Pak -Package -Archive -Iterate \
     -ArchiveDirectory=$ARCHIVE_DIR \
     -Platform=Linux \
     -Target=$TARGET
