@@ -125,7 +125,7 @@ class GameLiftDeployer:
                     }
                 ]
             },
-            #InstanceRoleArn=self.role_arn,
+            InstanceRoleArn=self.role_arn,
             ComputeType='EC2',
             MetricGroups=["default"]
         )
