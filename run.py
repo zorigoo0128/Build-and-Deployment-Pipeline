@@ -115,6 +115,12 @@ class GameLiftDeployer:
                     'Protocol': 'UDP'
                 }
             ],
+            Tags=[
+                {
+                    'Key': 'project',
+                    'Value': self.fleet_name
+                }
+            ],
             FleetType=self.fleet_type,
             RuntimeConfiguration={
                 "ServerProcesses": [
@@ -127,7 +133,7 @@ class GameLiftDeployer:
             },
             InstanceRoleArn=self.role_arn,
             ComputeType='EC2',
-            MetricGroups=["default"]
+            MetricGroups=[self.fleet_name]
         )
         print('Fleet created successful!')
         return response
