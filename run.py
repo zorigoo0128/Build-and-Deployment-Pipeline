@@ -95,6 +95,22 @@ class GameLiftDeployer:
 
             time.sleep(1)
 
+    
+    def check_build_exists(self, version):
+        aws_region = self.get_aws_region()
+        client = boto3.client("gamelift", region_name=aws_region)
+
+        response = client.list_builds(
+            Status='READY'
+        )
+
+        build_id = ''
+        if response and 'Builds' in response:
+            for build_info in response['Builds']:
+                if 'Version' in build_info and build_info['Version'] == version:
+                    build_id = build_info['BuildId']
+        return build_id
+            
         
 
     def create_fleet(self, build_id):
@@ -131,6 +147,9 @@ class GameLiftDeployer:
                     }
                 ]
             },
+            CertificateConfiguration={
+                'CertificateType': 'GENERATED'
+            },
             InstanceRoleArn=self.role_arn,
             ComputeType='EC2',
             MetricGroups=[self.fleet_name]
@@ -151,10 +170,14 @@ class GameLiftDeployer:
             print(f'Unexpected error: {e}')
 
     def deploy(self):
-        self.package()
-        self.copy_additional_libraries()
-        self.upload_build()
-        time.sleep(5)
+        existing_build_id = deployer.check_build_exists(self.build_version)
+
+        if not existing_build_id:
+            self.package()
+            self.copy_additional_libraries()
+            self.upload_build()
+            time.sleep(5)
+        
         fleet_info = self.create_fleet(self.build_id)
 
         # Write fleet info to file as JSON
@@ -170,6 +193,9 @@ class GameLiftDeployer:
         print("\n--------------------------------------------")
 
 if __name__ == "__main__":
+
+
+
 
     parser = argparse.ArgumentParser(description="Script description")
     parser.add_argument("-t",   "--target", type=str, help="Target argument")
@@ -195,5 +221,11 @@ if __name__ == "__main__":
         project_path=args.project_path,
         role_arn=args.rolearn,
         concurrent=args.concurrent_proccess)
+    res = deployer.check_build_exists(version='version_test1')
 
-    deployer.deploy()
+    if res:
+        print('yes')
+    else:
+        print('no')
+    print(res)
+    #deployer.deploy()
