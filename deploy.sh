@@ -3,7 +3,7 @@
 echo "Deploying Fleet $fleet_id with Version $version"
 
 # Get the default AWS region
-AWS_REGION=$(aws configure get region)
+AWS_REGION=$(aws configure get region --profile "$PROFILE")
 
 # GameLift build details
 BUILD_ID=""
