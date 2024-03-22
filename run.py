@@ -177,6 +177,8 @@ class GameLiftDeployer:
             self.copy_additional_libraries()
             self.upload_build()
             time.sleep(5)
+        else:
+            self.build_id = existing_build_id
         
         fleet_info = self.create_fleet(self.build_id)
 
@@ -221,11 +223,5 @@ if __name__ == "__main__":
         project_path=args.project_path,
         role_arn=args.rolearn,
         concurrent=args.concurrent_proccess)
-    res = deployer.check_build_exists(version='version_test1')
 
-    if res:
-        print('yes')
-    else:
-        print('no')
-    print(res)
-    #deployer.deploy()
+    deployer.deploy()
