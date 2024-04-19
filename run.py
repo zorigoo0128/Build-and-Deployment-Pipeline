@@ -126,7 +126,7 @@ class GameLiftDeployer:
             EC2InboundPermissions=[
                 {
                     'FromPort': 7777,
-                    'ToPort': 7777 + self.concurrent - 1,
+                    'ToPort': 7777 + self.concurrent,
                     'IpRange': '0.0.0.0/0',
                     'Protocol': 'UDP'
                 }
